@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('sites', 'SitesController');
+Route::get('sites/export/{id}', 'SitesController@export')->name('sites.export');
