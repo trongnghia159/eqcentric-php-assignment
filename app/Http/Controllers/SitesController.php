@@ -6,6 +6,7 @@ use App\Site;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+
 class SitesController extends Controller
 {
     /**
@@ -29,8 +30,20 @@ class SitesController extends Controller
         if ( $user->role === 'user' ) {
             $sites = $user->sites_by_user_id;
         }
+        
         return view('sites.index', [
             'sites' => $sites,
+        ]);
+    }
+
+    /**
+     * Show site's detail  
+     */
+    public function show($id) {
+        $site = Site::find($id);
+        
+        return view('sites.show', [
+            'site' => $site
         ]);
     }
 
