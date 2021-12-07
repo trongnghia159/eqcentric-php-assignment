@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Site;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SiteExport;
 
 
 class SitesController extends Controller
@@ -45,6 +47,14 @@ class SitesController extends Controller
         return view('sites.show', [
             'site' => $site
         ]);
+    }
+
+    /**
+     * Export CSV file
+     */
+    public function export($id)
+    {
+        return Excel::download(new SiteExport($id), 'site.csv');
     }
 
     /**
