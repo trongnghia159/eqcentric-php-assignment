@@ -24,7 +24,11 @@ class SitesController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $sites = $user->sites()->get();
+        $sites = Site::all();
+
+        if ( $user->role === 'user' ) {
+            $sites = $user->sites;
+        }
         return view('sites.index', [
             'sites' => $sites,
         ]);
